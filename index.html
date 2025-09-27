@@ -192,7 +192,7 @@
             font-weight: 500;
         }
 
-        /* Controls Section */
+        /* Controls Section - Mobile Optimized */
         .game-controls {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -853,7 +853,7 @@
             }
         }
 
-        /* Responsive Design */
+        /* Responsive Design - Mobile Optimized */
         @media (max-width: 768px) {
             body {
                 padding: var(--space-2);
@@ -870,10 +870,27 @@
                 padding: var(--space-4) var(--space-3) var(--space-3);
             }
 
+            /* Mobile-optimized controls layout */
             .game-controls {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
                 gap: var(--space-3);
                 padding: var(--space-4) var(--space-3);
+            }
+
+            /* Make controls smaller on mobile */
+            .control-group {
+                gap: var(--space-1);
+            }
+
+            .control-label {
+                font-size: var(--text-xs);
+                margin-bottom: 2px;
+            }
+
+            select, button {
+                font-size: var(--text-sm);
+                padding: var(--space-2) var(--space-3);
+                min-height: 36px;
             }
 
             .game-content {
@@ -882,7 +899,7 @@
             }
 
             .game-stats {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(3, 1fr);
                 gap: var(--space-3);
                 padding: var(--space-4);
             }
@@ -896,6 +913,8 @@
                 width: 100%;
                 max-width: 250px;
                 justify-content: center;
+                min-height: 36px;
+                padding: var(--space-2) var(--space-3);
             }
 
             .combo-display {
@@ -908,16 +927,18 @@
             .hole {
                 min-height: 50px;
             }
-            
-            button, select, .power-up {
-                min-height: 44px;
-            }
         }
 
         @media (max-width: 480px) {
+            /* Even smaller controls for very small screens */
+            .game-controls {
+                grid-template-columns: 1fr;
+                gap: var(--space-2);
+            }
+
             .game-board {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-3);
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--space-2);
             }
 
             .modal-content {
@@ -1020,8 +1041,8 @@
     </div>
 
     <!-- Settings Button -->
-    <div class="" id="settings-btn">
-        
+    <div class="settings-btn" id="settings-btn">
+        ⚙️
     </div>
 
     <!-- Main Game Container -->
@@ -1032,7 +1053,7 @@
             <p class="game-subtitle">Test your reflexes in this exciting arcade game!</p>
         </header>
 
-        <!-- Game Controls -->
+        <!-- Game Controls - Mobile Optimized -->
         <div class="game-controls">
             <div class="control-group">
                 <label for="game-duration" class="control-label">Game Duration</label>
