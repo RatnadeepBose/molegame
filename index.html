@@ -169,35 +169,35 @@
         /* Header Section */
         .game-header {
             text-align: center;
-            padding: var(--space-6) var(--space-4) var(--space-4);
+            padding: var(--space-4) var(--space-4) var(--space-3);
             background: rgba(0, 0, 0, 0.2);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .game-title {
-            font-size: clamp(var(--text-2xl), 5vw, var(--text-4xl));
+            font-size: clamp(var(--text-xl), 5vw, var(--text-3xl));
             font-weight: 800;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: var(--space-2);
+            margin-bottom: var(--space-1);
             letter-spacing: -0.02em;
             text-shadow: 0 2px 10px rgba(255, 107, 53, 0.3);
         }
 
         .game-subtitle {
-            font-size: var(--text-base);
+            font-size: var(--text-sm);
             color: var(--text-muted);
             font-weight: 500;
         }
 
-        /* Controls Section - Mobile Optimized */
+        /* Controls Section - Ultra Compact for Mobile */
         .game-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: var(--space-4);
-            padding: var(--space-6) var(--space-4);
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-2);
+            padding: var(--space-3) var(--space-3);
             background: rgba(0, 0, 0, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -205,31 +205,34 @@
         .control-group {
             display: flex;
             flex-direction: column;
-            gap: var(--space-2);
+            gap: 2px;
         }
 
         .control-label {
-            font-size: var(--text-sm);
+            font-size: 0.65rem;
             font-weight: 600;
             color: var(--text-secondary);
             text-transform: uppercase;
             letter-spacing: 0.05em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        /* Form Elements */
+        /* Form Elements - Ultra Compact */
         select,
         button {
             font-family: inherit;
-            font-size: var(--text-base);
+            font-size: 0.7rem;
             font-weight: 600;
             border: none;
-            border-radius: var(--radius-base);
-            padding: var(--space-3) var(--space-4);
+            border-radius: var(--radius-sm);
+            padding: 6px 8px;
             transition: all var(--transition-base);
             cursor: pointer;
             outline: none;
             /* Ensure touch-friendly sizing */
-            min-height: 44px;
+            min-height: 32px;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
@@ -241,9 +244,9 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
             background-repeat: no-repeat;
-            background-position: right var(--space-3) center;
-            background-size: 16px;
-            padding-right: var(--space-10);
+            background-position: right 6px center;
+            background-size: 12px;
+            padding-right: 24px;
         }
 
         select:hover {
@@ -259,7 +262,7 @@
         button {
             background: var(--gradient-primary);
             color: var(--text-inverse);
-            box-shadow: var(--shadow-md);
+            box-shadow: var(--shadow-sm);
             border: 1px solid transparent;
             position: relative;
             overflow: hidden;
@@ -282,8 +285,8 @@
         }
 
         button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg), var(--glow-primary);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md), var(--glow-primary);
         }
 
         button:active {
@@ -306,7 +309,7 @@
         }
 
         .btn-secondary:hover {
-            box-shadow: var(--shadow-lg), var(--glow-secondary);
+            box-shadow: var(--shadow-md), var(--glow-secondary);
         }
 
         /* Game Board Section */
@@ -314,15 +317,15 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            padding: var(--space-6) var(--space-4);
-            gap: var(--space-6);
+            padding: var(--space-4) var(--space-3);
+            gap: var(--space-4);
             overflow: hidden;
         }
 
         .game-board {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: clamp(var(--space-3), 3vw, var(--space-6));
+            gap: clamp(8px, 3vw, var(--space-4));
             max-width: 500px;
             margin: 0 auto;
             aspect-ratio: 1;
@@ -421,17 +424,17 @@
         .game-stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-4);
+            gap: var(--space-3);
             background: rgba(0, 0, 0, 0.2);
-            border-radius: var(--radius-lg);
-            padding: var(--space-5);
+            border-radius: var(--radius-base);
+            padding: var(--space-3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all var(--transition-base);
         }
 
         .game-stats:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-sm);
         }
 
         .stat {
@@ -439,19 +442,19 @@
         }
 
         .stat-value {
-            font-size: clamp(var(--text-2xl), 4vw, var(--text-4xl));
+            font-size: clamp(var(--text-lg), 4vw, var(--text-2xl));
             font-weight: 800;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: var(--space-1);
+            margin-bottom: 2px;
             line-height: 1;
             transition: all var(--transition-base);
         }
 
         .stat-label {
-            font-size: var(--text-sm);
+            font-size: 0.7rem;
             color: var(--text-muted);
             font-weight: 600;
             text-transform: uppercase;
@@ -460,12 +463,12 @@
 
         /* Timer Bar */
         .timer-container {
-            margin-top: var(--space-4);
+            margin-top: var(--space-3);
         }
 
         .timer-bar {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-sm);
             overflow: hidden;
@@ -494,7 +497,7 @@
         /* Power-ups */
         .power-ups {
             display: flex;
-            gap: var(--space-4);
+            gap: var(--space-3);
             justify-content: center;
             flex-wrap: wrap;
         }
@@ -502,20 +505,20 @@
         .power-up {
             display: flex;
             align-items: center;
-            gap: var(--space-2);
+            gap: 6px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-base);
-            padding: var(--space-3) var(--space-4);
+            padding: 8px 10px;
             cursor: pointer;
             transition: all var(--transition-base);
-            font-size: var(--text-sm);
+            font-size: 0.7rem;
             font-weight: 600;
-            min-width: 140px;
+            min-width: 120px;
             position: relative;
             overflow: hidden;
             /* Ensure touch-friendly sizing */
-            min-height: 44px;
+            min-height: 36px;
         }
 
         .power-up::before {
@@ -536,48 +539,48 @@
 
         .power-up:hover {
             border-color: var(--accent-tertiary);
-            box-shadow: 0 0 16px rgba(78, 205, 196, 0.3);
-            transform: translateY(-2px);
+            box-shadow: 0 0 12px rgba(78, 205, 196, 0.3);
+            transform: translateY(-1px);
         }
 
         .power-up.active {
             background: rgba(78, 205, 196, 0.2);
             border-color: var(--accent-tertiary);
-            box-shadow: 0 0 20px rgba(78, 205, 196, 0.4);
+            box-shadow: 0 0 15px rgba(78, 205, 196, 0.4);
             animation: powerUpPulse 1s infinite alternate;
         }
 
         @keyframes powerUpPulse {
-            0% { box-shadow: 0 0 15px rgba(78, 205, 196, 0.4); }
-            100% { box-shadow: 0 0 25px rgba(78, 205, 196, 0.6); }
+            0% { box-shadow: 0 0 10px rgba(78, 205, 196, 0.4); }
+            100% { box-shadow: 0 0 20px rgba(78, 205, 196, 0.6); }
         }
 
         .power-up-icon {
-            width: 28px;
-            height: 28px;
+            width: 22px;
+            height: 22px;
             background: var(--accent-tertiary);
             border-radius: var(--radius-full);
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 800;
-            font-size: var(--text-sm);
+            font-size: 0.7rem;
             color: var(--text-inverse);
         }
 
         /* Combo Display */
         .combo-display {
             position: absolute;
-            top: var(--space-6);
-            right: var(--space-6);
-            font-size: var(--text-xl);
+            top: var(--space-4);
+            right: var(--space-4);
+            font-size: var(--text-lg);
             font-weight: 800;
             color: var(--accent-warning);
             text-shadow: 0 0 16px rgba(255, 217, 61, 0.6);
             opacity: 0;
             transition: all var(--transition-base);
             background: rgba(0, 0, 0, 0.3);
-            padding: var(--space-2) var(--space-3);
+            padding: 4px 8px;
             border-radius: var(--radius-base);
             border: 1px solid rgba(255, 217, 61, 0.3);
         }
@@ -613,7 +616,7 @@
         .modal-content {
             background: var(--surface);
             border-radius: var(--radius-xl);
-            padding: var(--space-8);
+            padding: var(--space-6);
             text-align: center;
             max-width: 400px;
             width: 90%;
@@ -634,7 +637,7 @@
         }
 
         .modal-title {
-            font-size: var(--text-3xl);
+            font-size: var(--text-2xl);
             font-weight: 800;
             background: var(--gradient-secondary);
             -webkit-background-clip: text;
@@ -644,7 +647,7 @@
         }
 
         .modal-text {
-            font-size: var(--text-lg);
+            font-size: var(--text-base);
             color: var(--text-secondary);
             margin-bottom: var(--space-6);
             line-height: 1.6;
@@ -682,7 +685,7 @@
         }
 
         .settings-title {
-            font-size: var(--text-2xl);
+            font-size: var(--text-xl);
             font-weight: 700;
             background: var(--gradient-primary);
             -webkit-background-clip: text;
@@ -693,13 +696,13 @@
         .close-settings {
             background: none;
             border: none;
-            font-size: var(--text-2xl);
+            font-size: var(--text-xl);
             color: var(--text-muted);
             cursor: pointer;
             transition: color var(--transition-base);
             /* Ensure touch-friendly sizing */
-            min-height: 44px;
-            min-width: 44px;
+            min-height: 36px;
+            min-width: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -741,13 +744,13 @@
         /* Settings Button */
         .settings-btn {
             position: absolute;
-            top: var(--space-4);
-            right: var(--space-4);
+            top: var(--space-3);
+            right: var(--space-3);
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-full);
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -755,8 +758,9 @@
             transition: all var(--transition-base);
             z-index: 10;
             /* Ensure touch-friendly sizing */
-            min-height: 44px;
-            min-width: 44px;
+            min-height: 32px;
+            min-width: 32px;
+            font-size: 0.8rem;
         }
 
         .settings-btn:hover {
@@ -767,13 +771,13 @@
         /* Sound Toggle */
         .sound-toggle {
             position: absolute;
-            top: var(--space-4);
-            left: var(--space-4);
+            top: var(--space-3);
+            left: var(--space-3);
             background: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: var(--radius-full);
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -781,8 +785,9 @@
             transition: all var(--transition-base);
             z-index: 10;
             /* Ensure touch-friendly sizing */
-            min-height: 44px;
-            min-width: 44px;
+            min-height: 32px;
+            min-width: 32px;
+            font-size: 0.8rem;
         }
 
         .sound-toggle:hover {
@@ -796,7 +801,7 @@
         /* Floating Score Effects */
         .floating-score {
             position: absolute;
-            font-size: var(--text-xl);
+            font-size: var(--text-lg);
             font-weight: 800;
             color: var(--accent-warning);
             text-shadow: 0 0 10px rgba(255, 217, 61, 0.8);
@@ -867,60 +872,63 @@
             }
 
             .game-header {
-                padding: var(--space-4) var(--space-3) var(--space-3);
+                padding: var(--space-3) var(--space-3) var(--space-2);
             }
 
-            /* Mobile-optimized controls layout */
+            /* Mobile-optimized controls layout - 3 columns */
             .game-controls {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--space-3);
-                padding: var(--space-4) var(--space-3);
+                grid-template-columns: repeat(3, 1fr);
+                gap: var(--space-2);
+                padding: var(--space-3) var(--space-2);
             }
 
-            /* Make controls smaller on mobile */
+            /* Make controls even smaller on mobile */
             .control-group {
-                gap: var(--space-1);
+                gap: 1px;
             }
 
             .control-label {
-                font-size: var(--text-xs);
-                margin-bottom: 2px;
+                font-size: 0.6rem;
+                margin-bottom: 1px;
             }
 
             select, button {
-                font-size: var(--text-sm);
-                padding: var(--space-2) var(--space-3);
-                min-height: 36px;
+                font-size: 0.65rem;
+                padding: 4px 6px;
+                min-height: 28px;
             }
 
             .game-content {
-                padding: var(--space-4) var(--space-3);
-                gap: var(--space-4);
+                padding: var(--space-3) var(--space-2);
+                gap: var(--space-3);
             }
 
             .game-stats {
                 grid-template-columns: repeat(3, 1fr);
-                gap: var(--space-3);
-                padding: var(--space-4);
+                gap: var(--space-2);
+                padding: var(--space-2);
             }
 
             .power-ups {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
+                gap: var(--space-2);
             }
 
             .power-up {
-                width: 100%;
-                max-width: 250px;
+                width: auto;
+                max-width: 140px;
                 justify-content: center;
-                min-height: 36px;
-                padding: var(--space-2) var(--space-3);
+                min-height: 32px;
+                padding: 6px 8px;
+                font-size: 0.65rem;
             }
 
             .combo-display {
-                top: var(--space-4);
-                right: var(--space-4);
-                font-size: var(--text-lg);
+                top: var(--space-3);
+                right: var(--space-3);
+                font-size: var(--text-base);
+                padding: 3px 6px;
             }
             
             /* Ensure proper sizing for mobile */
@@ -932,27 +940,38 @@
         @media (max-width: 480px) {
             /* Even smaller controls for very small screens */
             .game-controls {
-                grid-template-columns: 1fr;
-                gap: var(--space-2);
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
             }
 
             .game-board {
                 grid-template-columns: repeat(3, 1fr);
-                gap: var(--space-2);
+                gap: 6px;
             }
 
             .modal-content {
-                padding: var(--space-6);
+                padding: var(--space-4);
                 width: 95%;
             }
 
             .modal-buttons {
                 flex-direction: column;
+                gap: var(--space-2);
             }
             
             /* Adjust hole size for very small screens */
             .hole {
                 min-height: 40px;
+            }
+
+            .power-ups {
+                flex-direction: column;
+                gap: var(--space-2);
+            }
+
+            .power-up {
+                width: 100%;
+                max-width: 200px;
             }
         }
 
@@ -1041,8 +1060,8 @@
     </div>
 
     <!-- Settings Button -->
-    <div class="settings-btn" id="settings-btn">
-        ⚙️
+    <div class="setting-btn" id="settings-btn">
+        
     </div>
 
     <!-- Main Game Container -->
@@ -1053,45 +1072,42 @@
             <p class="game-subtitle">Test your reflexes in this exciting arcade game!</p>
         </header>
 
-        <!-- Game Controls - Mobile Optimized -->
+        <!-- Game Controls - Ultra Compact for Mobile -->
         <div class="game-controls">
             <div class="control-group">
-                <label for="game-duration" class="control-label">Game Duration</label>
+                <label for="game-duration" class="control-label">Duration</label>
                 <select id="game-duration" name="game-duration">
-                    <option value="10">10 Seconds</option>
-                    <option value="20">20 Seconds</option>
-                    <option value="30" selected>30 Seconds</option>
-                    <option value="60">1 Minute</option>
-                    <option value="120">2 Minutes</option>
-                    <option value="300">5 Minutes</option>
-                    <option value="600">10 Minutes</option>
+                    <option value="10">10s</option>
+                    <option value="20">20s</option>
+                    <option value="30" selected>30s</option>
+                    <option value="60">1m</option>
+                    <option value="120">2m</option>
                 </select>
             </div>
 
             <div class="control-group">
-                <label for="difficulty" class="control-label">Difficulty Level</label>
+                <label for="difficulty" class="control-label">Difficulty</label>
                 <select id="difficulty" name="difficulty">
                     <option value="1200">Casual</option>
                     <option value="800" selected>Normal</option>
                     <option value="500">Hard</option>
                     <option value="300">Expert</option>
                     <option value="150">Master</option>
-                    <option value="80">Impossible</option>
                 </select>
             </div>
 
             <div class="control-group">
-                <label class="control-label">Game Actions</label>
-                <button id="start-btn" type="button">START GAME</button>
+                <label class="control-label">Actions</label>
+                <button id="start-btn" type="button">START</button>
             </div>
 
             <div class="control-group">
-                <label class="control-label">Game Control</label>
-                <button id="end-btn" type="button" class="btn-secondary" disabled>END GAME</button>
+                <label class="control-label">Control</label>
+                <button id="end-btn" type="button" class="btn-secondary" disabled>END</button>
             </div>
 
             <div class="control-group">
-                <label class="control-label">Quick Actions</label>
+                <label class="control-label">Quick</label>
                 <button id="retry-btn" type="button" disabled>RETRY</button>
             </div>
         </div>
@@ -1130,11 +1146,11 @@
             <div class="power-ups">
                 <div class="power-up" id="freeze-powerup" tabindex="0" role="button">
                     <div class="power-up-icon">F</div>
-                    <span>Freeze Time (3)</span>
+                    <span>Freeze (3)</span>
                 </div>
                 <div class="power-up" id="double-powerup" tabindex="0" role="button">
                     <div class="power-up-icon">2x</div>
-                    <span>Double Points (3)</span>
+                    <span>Double (3)</span>
                 </div>
             </div>
         </div>
@@ -1150,7 +1166,7 @@
             <p class="modal-text" id="modal-text">Your score: <span id="final-score">0</span></p>
             <div class="modal-buttons">
                 <button id="modal-retry-btn" type="button">RETRY</button>
-                <button id="modal-menu-btn" type="button" class="btn-secondary">MAIN MENU</button>
+                <button id="modal-menu-btn" type="button" class="btn-secondary">MENU</button>
             </div>
         </div>
     </div>
@@ -1545,7 +1561,7 @@
             
             // Update buttons
             startBtn.disabled = true;
-            startBtn.textContent = 'GAME RUNNING';
+            startBtn.textContent = 'RUNNING';
             endBtn.disabled = false;
             retryBtn.disabled = true;
             
@@ -1600,7 +1616,7 @@
 
         function resetToMenu() {
             startBtn.disabled = false;
-            startBtn.textContent = 'START GAME';
+            startBtn.textContent = 'START';
             endBtn.disabled = true;
             retryBtn.disabled = false;
         }
@@ -1802,7 +1818,7 @@
                 left: 50%;
                 transform: translate(-50%, -50%);
                 color: var(--accent-warning);
-                font-size: var(--text-2xl);
+                font-size: var(--text-lg);
                 font-weight: 800;
                 z-index: 100;
                 text-shadow: 0 0 20px rgba(255, 217, 61, 0.8);
@@ -1884,12 +1900,12 @@
         function updatePowerupDisplays() {
             freezePowerup.innerHTML = `
                 <div class="power-up-icon">F</div>
-                <span>Freeze Time (${gameState.freezeUses})</span>
+                <span>Freeze (${gameState.freezeUses})</span>
             `;
             
             doublePowerup.innerHTML = `
                 <div class="power-up-icon">2x</div>
-                <span>Double Points (${gameState.doublePointsUses})</span>
+                <span>Double (${gameState.doublePointsUses})</span>
             `;
         }
 
