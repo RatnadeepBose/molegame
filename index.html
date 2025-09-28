@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ultimate Whack-a-Mole</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* Modern CSS Custom Properties - Enhanced Gaming Color Palette */
         :root {
@@ -110,6 +111,7 @@
             color: var(--text-primary);
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             padding: var(--space-4);
@@ -858,6 +860,78 @@
             }
         }
 
+        /* Footer Styles */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: var(--space-4) var(--space-4);
+            text-align: center;
+            margin-top: auto;
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 1000px;
+            border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-3);
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: var(--surface-elevated);
+            border-radius: var(--radius-full);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all var(--transition-base);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+
+        .social-links a:hover::before {
+            opacity: 0.2;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg), var(--glow-primary);
+            border-color: var(--accent-primary);
+        }
+
+        .social-links i {
+            font-size: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+            margin: 0;
+            line-height: 1.5;
+        }
+
         /* Responsive Design - Mobile Optimized */
         @media (max-width: 768px) {
             body {
@@ -934,6 +1008,27 @@
             /* Ensure proper sizing for mobile */
             .hole {
                 min-height: 50px;
+            }
+
+            .footer {
+                padding: var(--space-3) var(--space-3);
+            }
+            
+            .social-links {
+                gap: var(--space-3);
+            }
+            
+            .social-links a {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .social-links i {
+                font-size: 1.1rem;
+            }
+            
+            .footer p {
+                font-size: var(--text-xs);
             }
         }
 
@@ -1208,6 +1303,28 @@
         </div>
     </div>
 
+    <!-- Beautiful Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://github.com/RatnadeepBose" title="GitHub - Code Repositories" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ratnadeepbose/" title="LinkedIn - Professional Network" target="_blank">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="#" title="YouTube - Educational Content">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="#" title="Twitter - Tech Updates">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" title="HackerOne - Bug Bounty Profile">
+                <i class="fas fa-bug"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 Ratnadeep Bose | Full-Stack Developer & Cybersecurity Expert from West Bengal, India</p>
+    </footer>
+
     <script>
         // Game Elements
         const gameBoard = document.getElementById('game-board');
@@ -1279,14 +1396,53 @@
             hammer: localStorage.getItem('customHammerImage') || 'images/hammer.png'
         };
 
-        // Sound Effects
+        // Sound Effects - Using base64 encoded fallback sounds
         const sounds = {
-            whack: new Audio('sound/whack02-87839 (mp3cut.net).mp3'),
-            special: new Audio('sound/game-start-317318.mp3'),
-            powerup: new Audio('sound/video-game-powerup-38065.mp3'),
-            gameOver: new Audio('sound/wrong-buzzer-6268 (mp3cut.net).mp3'),
-            achievement: new Audio('sound/level-up-06-370051.mp3')
+            whack: createFallbackSound(),
+            special: createFallbackSound(800, 0.3),
+            powerup: createFallbackSound(600, 0.4),
+            gameOver: createFallbackSound(200, 0.5),
+            achievement: createFallbackSound(1000, 0.3)
         };
+
+        // Function to create a fallback sound when files are missing
+        function createFallbackSound(frequency = 440, duration = 0.1) {
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = frequency;
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + duration);
+                
+                return {
+                    play: function() {
+                        if (gameState.soundEnabled) {
+                            this.currentTime = 0;
+                            const newSound = createFallbackSound(frequency, duration);
+                            // Return a dummy object with play method for consistency
+                            return { catch: function() {} };
+                        }
+                    },
+                    currentTime: 0
+                };
+            } catch (e) {
+                // Return a dummy object if Web Audio API is not supported
+                return {
+                    play: function() { return { catch: function() {} }; },
+                    currentTime: 0
+                };
+            }
+        }
 
         // Initialize Game
         function initGame() {
@@ -1391,7 +1547,23 @@
                 imageUrl = customImages.mole;
             }
             
-            mole.style.backgroundImage = `url('${imageUrl}')`;
+            // Create a fallback if image fails to load
+            const img = new Image();
+            img.onerror = function() {
+                // Use a colored circle as fallback
+                mole.style.backgroundImage = 'none';
+                mole.style.backgroundColor = isSpecial ? '#FFD700' : (isHit ? '#FF4757' : '#8B4513');
+                mole.innerHTML = isSpecial ? '★' : (isHit ? '💥' : '🐭');
+                mole.style.display = 'flex';
+                mole.style.alignItems = 'center';
+                mole.style.justifyContent = 'center';
+                mole.style.fontSize = '24px';
+            };
+            img.onload = function() {
+                mole.style.backgroundImage = `url('${imageUrl}')`;
+                mole.innerHTML = '';
+            };
+            img.src = imageUrl;
         }
 
         function addEventListeners() {
@@ -1531,9 +1703,11 @@
             
             try {
                 sounds[soundName].currentTime = 0;
-                sounds[soundName].play();
+                sounds[soundName].play().catch(e => {
+                    console.log(`Could not play sound: ${soundName}`);
+                });
             } catch (e) {
-                console.log(`Could not play sound: ${soundName}`);
+                console.log(`Error playing sound: ${soundName}`);
             }
         }
 
